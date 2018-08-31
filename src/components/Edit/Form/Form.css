@@ -1,0 +1,15 @@
+.root {
+  text-align: center;
+},
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+},
+
+.btn {
+  margin: 20px;
+  min-width: 30px;
+  width: 35px;
+  height: 35px;
+}

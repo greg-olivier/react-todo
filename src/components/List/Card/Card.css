@@ -1,0 +1,9 @@
+.card {
+  min-width: 275px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
