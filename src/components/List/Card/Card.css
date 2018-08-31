@@ -7,3 +7,14 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.btn {
+  min-width: 35px;
+  width: 35px;
+  height: 35px;
+}
+
+.crossed {
+  text-decoration: line-through;
+  font-size: 12px;
+}

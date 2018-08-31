@@ -1,11 +1,11 @@
-.root {
+.textCenter {
   text-align: center;
-},
+}
 
 .btnBox {
   display: flex;
-  justify-content: center;
-},
+  justify-content: space-between;
+}
 
 .btn {
   margin: 20px;

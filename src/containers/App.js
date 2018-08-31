@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import classes from './App.css';
-import List from '../components/List/List'
+import css from './App.css';
 import Edit from '../components/Edit/Edit'
 import Header from '../components/Header/Header'
+import List from '../components/List/List'
+import Aux from '../hoc/Aux'
+import WithClass from '../hoc/WithClass'
 
 
 class App extends Component {
@@ -10,33 +12,27 @@ class App extends Component {
     super(props)
     this.state = {
       todos: [],
-      create: false,
-      editItem: null
+      editItem: false
     }
   }
 
   displayList = () => {
-    if (this.state.editItem !== null || this.state.create === true)
-      this.setState({ editItem: null, create: false })
+    this.setState({ editItem: false })
   }
 
-  displayCreate = () => {
-    if (this.state.create === false && this.state.editItem === null)
-      this.setState({ create: true, editItem: null })
-  }
 
-  displayEdit = (index) => {
-    if (this.state.create === false && this.state.editItem === null)
-      this.setState({ create: false, editItem: index })
-  }
+  displayEdit = (index?) => {
+    console.log("index",index);
+    this.setState({ editItem: index })
 
+  }
 
   changeToDo = (event, index) => {
     const todo = {...this.state.todos[index]}
     if (event.target.name === 'status')
-      todo[event.target.name] = !this.state.todos[index].status
+    todo[event.target.name] = !this.state.todos[index].status
     else
-      todo[event.target.name] = event.target.value
+    todo[event.target.name] = event.target.value
 
     const todos = [...this.state.todos]
     todos[index] = todo
@@ -79,42 +75,35 @@ class App extends Component {
   }
 
 
-render() {
-
-  let scene = (
-    <List
-      todos={this.state.todos}
-      edit={index => this.editTodo(index)}
-      delete={ index => this.deleteToDo(index)}
-      changed={(event,index) => {this.changeToDo(event,index)}}/>
-  );
-
-  if (this.state.create === true) {
-
-      scene = (
+  render() {
+    return (
+      <Aux>
+        <Header title={this.props.name} add={event => {this.displayEdit()}} />
         <Edit
-          open={(this.state.editItem !== null || this.state.create === true) ? true : false}
-          close={this.displayList}
+          todo={(this.state.editItem !== (true || false)) ? this.state.todos[this.state.editItem] : null}
           add={this.addToDo}
-          delete={this.deleteToDo.bind(this)} />
-      )
-    } else if (this.state.editItem !== null) {
-      scene = (
-        <Edit
-          todo={this.state.todos[this.state.editItem]}
-          open={(this.state.editItem !== null || this.state.create === true) ? true : false}
+          open={(this.state.editItem !== false) ? true : false}
           close={this.displayList}
           save={this.saveToDo}
-          delete={this.deleteToDo.bind(this)} />
-      )
-    }
-
-    return (
-      <div className={classes.App}>
-        <Header title={this.props.name} click={this.displayCreate} />
-      </div>
+          delete={this.deleteToDo.bind(this)}
+        />
+        <List
+          done={false}
+          todos={this.state.todos}
+          edit={this.displayEdit}
+          delete={ index => this.deleteToDo(index)}
+          changed={(event,index) => {this.changeToDo(event,index)}}
+        />
+        <List
+          done={true}
+          todos={this.state.todos}
+          edit={this.displayEdit}
+          delete={ index => this.deleteToDo(index)}
+          changed={(event,index) => {this.changeToDo(event,index)}}
+        />
+      </Aux>
     );
   }
 }
 
-export default App;
+export default WithClass(App, css.App);

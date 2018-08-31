@@ -16,7 +16,7 @@ const Header = (props) => {
           {props.title}
         </Typography>
           <Tooltip disableFocusListener disableTouchListener title="Add" placement="left">
-          <Button variant="flat" color="primary" aria-label="Add" onClick={props.click}>
+          <Button variant="flat" color="primary" aria-label="Add" onClick={props.add}>
             <AddIcon />
           </Button>
         </Tooltip>
