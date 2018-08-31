@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import css from './App.css';
 import Edit from '../components/Edit/Edit'
 import Header from '../components/Header/Header'
@@ -7,11 +7,17 @@ import Aux from '../hoc/Aux'
 import WithClass from '../hoc/WithClass'
 
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props){
     super(props)
     this.state = {
-      todos: [],
+      todos: [
+        {text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit." , status: false},
+        {text:"Mauris gravida sed quam eget bibendum." , status: false},
+        {text:"Fusce tincidunt cursus nulla, a interdum quam egestas ac." , status: false},
+        {text:"Morbi nec maximus purus, non pharetra lorem." , status: false},
+        {text: "Sed urna quam, suscipit at justo ac, tempor congue odio." , status: false}
+      ],
       editItem: false
     }
   }
