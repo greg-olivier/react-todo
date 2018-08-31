@@ -4,12 +4,7 @@ import TextField from '@material-ui/core/TextField'
 
 
 class Edit extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      todo: {text:'', status: false}
-    }
-  }
+  state = {}
 
   componentWillReceiveProps(nextProps){
     console.log(nextProps)
@@ -42,7 +37,7 @@ class Edit extends Component {
         save={this.saveToDo}
         close={this.props.close}
         open={this.props.open}
-        delete={this.props.delete}>
+        delete={(typeof this.state.todo !== 'object') ? this.props.delete : this.props.close}>
         <TextField
           id="multiline-flexible"
           name="text"

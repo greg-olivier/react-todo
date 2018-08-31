@@ -14,8 +14,17 @@ function Transition(props) {
   return <Slide direction="down" {...props} />;
 }
 
-const classes = {
-  root: css.textCenter
+const styles = {
+  textCenter: {
+    textAlign: 'center'
+  },
+
+  btn: {
+    margin: '20px',
+    minWidth: '30px',
+    width: '35px',
+    height: '35px'
+  }
 }
 
 
@@ -24,24 +33,25 @@ const FormTask = (props) => {
       <Dialog
         fullWidth={true}
         maxWidth="xs"
+        style={styles.textCenter}
         open={props.open}
         onClose={props.close}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         TransitionComponent={Transition}>
 
-        <DialogTitle id="alert-dialog-title" classes={{ root: css.form }} >{props.title}</DialogTitle>
+        <DialogTitle id="alert-dialog-title" >{props.title}</DialogTitle>
         <DialogContent id="alert-dialog-description">
           {props.children}
         </DialogContent>
         <div className={css.btnBox}>
           <Tooltip disableFocusListener disableTouchListener title="Save" placement="right">
-            <Button variant="fab" color="primary" aria-label="Save" className={css.btn} onClick={props.save}>
+            <Button variant="fab" color="primary" aria-label="Save" style={styles.btn} onClick={props.save}>
               <SaveIcon/>
             </Button>
           </Tooltip>
           <Tooltip disableFocusListener disableTouchListener title="Delete" placement="left">
-            <Button variant="fab" color="primary" aria-label="Delete" className={css.btn} onClick={props.delete}>
+            <Button variant="fab" color="primary" aria-label="Delete" style={styles.btn} onClick={props.delete}>
               <DeleteRoundedIcon />
             </Button>
           </Tooltip>
