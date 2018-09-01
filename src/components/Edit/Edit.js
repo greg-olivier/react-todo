@@ -37,7 +37,7 @@ class Edit extends Component {
         save={this.saveToDo}
         close={this.props.close}
         open={this.props.open}
-        delete={(typeof this.state.todo !== 'object') ? this.props.delete : this.props.close}>
+        delete={(typeof this.state.todo === 'object') ? this.props.delete : this.props.close}>
         <TextField
           id="multiline-flexible"
           name="text"

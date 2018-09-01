@@ -45,14 +45,14 @@ const FormTask = (props) => {
           {props.children}
         </DialogContent>
         <div className={css.btnBox}>
-          <Tooltip disableFocusListener disableTouchListener title="Save" placement="right">
-            <Button variant="fab" color="primary" aria-label="Save" style={styles.btn} onClick={props.save}>
-              <SaveIcon/>
-            </Button>
-          </Tooltip>
-          <Tooltip disableFocusListener disableTouchListener title="Delete" placement="left">
+          <Tooltip disableFocusListener disableTouchListener title="Delete" placement="right">
             <Button variant="fab" color="primary" aria-label="Delete" style={styles.btn} onClick={props.delete}>
               <DeleteRoundedIcon />
+            </Button>
+          </Tooltip>
+          <Tooltip disableFocusListener disableTouchListener title="Save" placement="left">
+            <Button variant="fab" color="primary" aria-label="Save" style={styles.btn} onClick={props.save}>
+              <SaveIcon/>
             </Button>
           </Tooltip>
         </div>

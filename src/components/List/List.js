@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CardItem from './Card/Card';
-import WithClass from '../../hoc/WithClass';
+import Aux from '../../hoc/Aux';
 import css from './List.css';
 
 class List extends Component {
@@ -12,45 +12,56 @@ class List extends Component {
   }
 
   componentWillMount(){
-    this.resizeMargin()
+    this.resizeSideMargin()
   }
 
-componentDidMount(){
-  window.addEventListener('resize', this.resizeMargin)
-}
+  componentDidMount(){
+    window.addEventListener('resize', this.resizeSideMargin)
+  }
 
-resizeMargin = () => {
-  const margin = (window.innerWidth % (this.state.widthCard + (2*this.state.marginSideCard)))/2
-  this.setState ({
-    dynMargin: {margin: '0 ' + margin + 'px'}
-  })
-  console.log(this.state)
-}
+  resizeSideMargin = () => {
+    const margin = (window.innerWidth % (this.state.widthCard + (2 * this.state.marginSideCard))) / 2
+    this.setState ({
+      dynMargin: {margin: '15px ' + margin + 'px'}
+    })
+  }
 
   render() {
-    return (
-      <ul className={css.listFlex} style={this.state.dynMargin}>
-        {this.props.todos.map( (todo, index) => {
-          if (this.props.done === todo.status) {
-            console.log(this.state.widthCard)
-            return <li className={css.itemFlex} style={{width: this.state.widthCard, margin: '15px ' + this.state.marginSideCard + 'px'}} key={index}>
-              <CardItem
-                todo={todo}
-                delete={ event => {this.props.delete(index)} }
-                changed={ event => {this.props.changed(event, index)} }
-                edit= {event => {this.props.edit(index)}}
-              />
-            </li>
-          } else return null
-        })
-      }
-    </ul>
 
-  )
+    let list = null;
+
+    const display = this.props.todos.find((e) => {
+      return e.status === this.props.done;
+    });
+
+    if (display !== undefined)
+      list = (
+        <Aux>
+          <h2>{this.props.title}</h2>
+          <div className={css.List}>
+            <ul className={css.listFlex} style={this.state.dynMargin}>
+              {this.props.todos.map( (todo, index) => {
+                if (this.props.done === todo.status) {
+                  return <li className={css.itemFlex} style={{width: this.state.widthCard, margin: this.state.marginSideCard + 'px'}} key={index}>
+                    <CardItem
+                      todo={todo}
+                      delete={ event => {this.props.delete(index)} }
+                      changed={ event => {this.props.changed(event, index)} }
+                      edit= {event => {this.props.edit(index)}}
+                    />
+                  </li>
+                } else return null
+              })
+            }
+          </ul>
+        </div>
+      </Aux>
+    )
+    return list
+  }
 }
-}
 
 
 
 
-export default WithClass(List, css.List);
+export default List;

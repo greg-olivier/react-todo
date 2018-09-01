@@ -1,5 +1,5 @@
 /* .card {
-  min-width: 275px;
+min-width: 275px;
 } */
 
 .content {
@@ -17,5 +17,8 @@
 
 .crossed {
   text-decoration: line-through;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.2em;
+  font-weight: 100;
+  
 }

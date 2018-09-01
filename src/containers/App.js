@@ -94,6 +94,7 @@ class App extends PureComponent {
           delete={this.deleteToDo.bind(this)}
         />
         <List
+          title="To do"
           done={false}
           todos={this.state.todos}
           edit={this.displayEdit}
@@ -101,6 +102,7 @@ class App extends PureComponent {
           changed={(event,index) => {this.changeToDo(event,index)}}
         />
         <List
+          title="Done"
           done={true}
           todos={this.state.todos}
           edit={this.displayEdit}

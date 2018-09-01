@@ -40,12 +40,12 @@ const CardItem = (props) => {
           <Checkbox name="status" checked={props.todo.status} onChange={props.changed} color="primary" />
           {card}
           <div>
-            {btnBox}
             <Tooltip disableFocusListener disableTouchListener title="Delete">
               <Button variant="flat" color="primary" aria-label="Delete" className={css.btn} onClick={props.delete}>
                 <DeleteIcon />
               </Button>
             </Tooltip>
+              {btnBox}
           </div>
         </CardContent>
       </Card>
