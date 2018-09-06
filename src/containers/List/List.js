@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CardItem from './Card/Card';
+import CardItem from '../../components/Card/Card';
 import Aux from '../../hoc/Aux';
 import css from './List.css';
 
@@ -26,6 +26,13 @@ class List extends Component {
     })
   }
 
+  validate = (event, todo, index) => {
+    if (todo.text === "")
+      event.target.focus()
+    else
+      this.props.save(todo, index)
+  }
+
   render() {
 
     let list = null;
@@ -37,7 +44,7 @@ class List extends Component {
     if (display !== undefined)
       list = (
         <Aux>
-          <h2>{this.props.title}</h2>
+          <h2 style={{textAlign:'center'}}>{this.props.title}</h2>
           <div className={css.List}>
             <ul className={css.listFlex} style={this.state.dynMargin}>
               {this.props.todos.map( (todo, index) => {
@@ -48,6 +55,7 @@ class List extends Component {
                       delete={ event => {this.props.delete(index)} }
                       changed={ event => {this.props.changed(event, index)} }
                       edit= {event => {this.props.edit(index)}}
+                      save={event => {this.validate(event, todo, index)}}
                     />
                   </li>
                 } else return null

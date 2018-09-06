@@ -1,0 +1,12 @@
+.btnBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.btn {
+  margin: 20px !important;
+  min-width: 30px !important;
+  width: 35px !important;
+  height: 35px !important;
+}

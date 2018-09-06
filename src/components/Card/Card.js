@@ -6,16 +6,24 @@ import DeleteIcon from '@material-ui/icons/DeleteRounded';
 import EditIcon from '@material-ui/icons/EditRounded';
 import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField'
 import css from './Card.css'
 
 
 const CardItem = (props) => {
   let card = (
-    <input type="text"
-      name="text"
-      placeholder="Add your task here"
-      onChange={props.changed}
-      value={props.todo.text} />
+      <TextField
+        id="multiline-flexible"
+        multiline
+        rowsMax="3"
+        name="text"
+        required
+        error={(props.todo) ? props.todo.text === "" : false}
+        placeholder="Add your task here"
+        margin="normal"
+        onChange={props.changed}
+        value={props.todo.text}
+        onBlur={props.save}/>
     );
 
     let btnBox = (
